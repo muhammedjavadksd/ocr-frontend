@@ -9,7 +9,6 @@ function App() {
 
   return (
     <div className="App bg-gradient-to-br from-purple-100 to-purple-100">
-      {JSON.stringify(response)}
       <AadharUploadLandingPage callback={(val) => setResponse(val)} />
       {response && <ResultSection response={response} />}
     </div >

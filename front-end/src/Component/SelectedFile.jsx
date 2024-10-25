@@ -2,7 +2,6 @@
 
 function SelectedFile({ file }) {
 
-    console.log(file);
     return (
         <div className=" space-x-4 hover:bg-gray-200  duration-300 flex justify-center p-5 items-center  border-2 border-dashed border-gray-300 rounded-lg">
 

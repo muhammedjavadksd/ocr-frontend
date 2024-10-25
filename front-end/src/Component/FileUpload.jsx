@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import FileSelect from "./FileSelect";
 import SelectedFile from "./SelectedFile";
 import { uploadFile } from "../Api/api";
+import SpinnerLoader from "./SpinnerLoader";
 
 const AadharUploadLandingPage = ({ callback }) => {
     const [file, setFile] = useState(null);
@@ -13,28 +14,8 @@ const AadharUploadLandingPage = ({ callback }) => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // useEffect(() => {
-    //     if (file && file2) {
-    //         setLoading(true);
-    //         callback(123); // Assuming this appends documents
-    //         setLoading(false);
-    //     }
-    // }, [file, file2]);
 
-    // useEffect(() => {
-    //     const observer = new MutationObserver(() => {
-    //         window.scroll({
-    //             top: document.body.scrollHeight,
-    //             behavior: 'smooth'
-    //         });
-    //     });
 
-    //     observer.observe(document.body, { childList: true, subtree: true });
-
-    //     return () => {
-    //         observer.disconnect();
-    //     };
-    // }, []);
 
     const handleDragOver = (e) => {
         e.preventDefault();
@@ -98,6 +79,8 @@ const AadharUploadLandingPage = ({ callback }) => {
 
     return (
         <div className="min-h-screen  flex items-center justify-center p-4">
+            {loading && <SpinnerLoader />}
+
             <div className="bg-white rounded-lg shadow-xl p-8 pb-0 max-w-3xl w-full">
                 <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Aadhar Card Upload & Data Extraction</h1>
 

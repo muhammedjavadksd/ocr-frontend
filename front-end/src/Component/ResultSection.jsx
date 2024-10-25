@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FiUser, FiCalendar, FiMapPin, FiClipboard } from "react-icons/fi";
 import { RiGenderlessFill } from "react-icons/ri";
 import { MdContentCopy } from "react-icons/md";
+import SpinnerLoader from "./SpinnerLoader";
 
 const ResultSection = ({ response }) => {
 
@@ -11,6 +12,18 @@ const ResultSection = ({ response }) => {
     useEffect(() => {
         setResponse(response)
         setOcrDetails(response.data)
+        const observer = new MutationObserver(() => {
+            window.scroll({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        return () => {
+            observer.disconnect();
+        };
     }, [response])
 
 
