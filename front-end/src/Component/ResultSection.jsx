@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiUser, FiCalendar, FiMapPin, FiClipboard } from "react-icons/fi";
 import { RiGenderlessFill } from "react-icons/ri";
 import { MdContentCopy } from "react-icons/md";
 
-const ResultSection = () => {
+const ResultSection = ({ response }) => {
 
-    const personData = {
-        aadharNumber: "1234 5678 9012",
-        name: "John Doe",
-        dateOfBirth: "1990-01-01",
-        gender: "Male",
-        address: "123 Main St, City, State",
-        pinCode: "123456"
-    };
+    const [apiResponse, setResponse] = useState(response);
+    const [ocrDetails, setOcrDetails] = useState(null);
+
+    useEffect(() => {
+        setResponse(response)
+        setOcrDetails(response.data)
+    }, [response])
+
 
     const copyToClipboard = (value) => {
         navigator.clipboard.writeText(value);
@@ -47,49 +47,44 @@ const ResultSection = () => {
                     {renderField(
                         <FiUser size={24} />,
                         "Aadhar Number",
-                        personData.aadharNumber,
+                        ocrDetails?.aadhar_number,
                         "aadhar"
                     )}
                     {renderField(
                         <FiUser size={24} />,
                         "Name",
-                        personData.name,
+                        ocrDetails?.name,
                         "name"
                     )}
                     {renderField(
                         <FiCalendar size={24} />,
                         "Date of Birth",
-                        personData.dateOfBirth,
+                        ocrDetails?.dob,
                         "dob"
                     )}
                     {renderField(
                         <RiGenderlessFill size={24} />,
                         "Gender",
-                        personData.gender,
+                        ocrDetails?.gender,
                         "gender"
                     )}
                     {renderField(
                         <FiMapPin size={24} />,
                         "Address",
-                        personData.address,
+                        ocrDetails?.address,
                         "address"
                     )}
-                    {renderField(
-                        <FiClipboard size={24} />,
-                        "Pin Code",
-                        personData.pinCode,
-                        "pincode"
-                    )}
+
                 </div>
 
 
-                {personData && (
+                {apiResponse && (
                     <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
                         <h2 className="text-2xl font-semibold mb-4 text-gray-800">
                             API Response
                         </h2>
                         <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
-                            <code>{JSON.stringify(personData, null, 2)}</code>
+                            <code>{JSON.stringify(apiResponse, null, 2)}</code>
                         </pre>
                     </div>
                 )}
