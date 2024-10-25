@@ -1,5 +1,9 @@
+const { config } = require("dotenv");
 const { Schema, model } = require("mongoose");
 
+config()
+const collectionName = process.env.AADHAR_SCHEMA || "AADHAR_SCHEMA"
+console.log(collectionName);
 
 const AadharInfo = new Schema({
     name: {
@@ -24,5 +28,5 @@ const AadharInfo = new Schema({
     }
 })
 
-const AadharSchema = new model(process.env.AADHAR_SCHEMA, AadharInfo);
+const AadharSchema = new model(collectionName, AadharInfo);
 module.exports = AadharSchema

@@ -1,3 +1,4 @@
+const AadharSchema = require("../database/models/aadhar-info");
 const { getDataFromAadharCard, getName, getGender, getIdNumber, getDOB, getAddress } = require("../helper/textExtractorHelper");
 const path = require("path")
 
@@ -15,6 +16,8 @@ async function uploadFile(req, res) {
         const id = getIdNumber(basicData)
         const dob = getDOB(basicData)
         const address = getAddress(advanceData)
+
+        await new AadharSchema({ name, gender, dob, aadhar_number: id, address }).save()
 
         res.status(200).json({
             status: true,
