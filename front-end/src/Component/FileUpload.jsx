@@ -9,7 +9,6 @@ import SpinnerLoader from "./SpinnerLoader";
 const AadharUploadLandingPage = ({ callback }) => {
     const [file, setFile] = useState(null);
     const [file2, setFile2] = useState(null);
-    const [extractedData, setExtractedData] = useState(null);
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -71,10 +70,9 @@ const AadharUploadLandingPage = ({ callback }) => {
         })
     };
 
-    const handleRemoveFile = () => {
-        setFile(null);
+    const handleRemoveFile = (state) => {
+        state(null);
         setError("");
-        setExtractedData(null);
     };
 
     return (
@@ -89,12 +87,12 @@ const AadharUploadLandingPage = ({ callback }) => {
                         {!file ? (
                             <FileSelect label="file-upload" />
                         ) : (
-                            <SelectedFile file={file} />
+                            <SelectedFile onRemove={() => handleRemoveFile(setFile)} file={file} />
                         )}
                         {!file2 ? (
                             <FileSelect label={"file-upload2"} />
                         ) : (
-                            <SelectedFile file={file2} />
+                            <SelectedFile onRemove={() => handleRemoveFile(setFile2)} file={file2} />
                         )}
                     </div>
                     <input id="file-upload" type="file" className="hidden" onChange={(event) => handleFileChange(event, "front")} accept="image/jpeg,image/png" aria-label="Upload Aadhar card image" />
