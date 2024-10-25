@@ -20,6 +20,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "mongoose": "^8.7.2",
     "pan-aadhaar-ocr": "^1.0.2",
     "smart-docs-parser": "^1.1.2"
   }

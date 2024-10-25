@@ -5,8 +5,10 @@ const port = process.env.PORT || 8080
 const dotenv = require("dotenv");
 const userRouter = require("./router/userRouter");
 const { notFound, errorHandle } = require("./middleware/utilMiddleware");
+const mongoConnection = require("./database/connection");
 
 dotenv.config({ path: "./.env" })
+mongoConnection()
 
 app.use("/", userRouter);
 
