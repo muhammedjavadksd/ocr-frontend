@@ -3,8 +3,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080
 const dotenv = require("dotenv");
-const { notFound, errorHandle } = require("./middleware/utilMiddleware");
 const userRouter = require("./router/userRouter");
+const { notFound, errorHandle } = require("./middleware/utilMiddleware");
 
 dotenv.config({ path: "./.env" })
 
