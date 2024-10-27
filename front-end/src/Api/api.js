@@ -6,6 +6,9 @@ const instance = axios.create({
 
 export async function uploadFile(frontSide, backSide) {
     try {
+
+        console.log("Backend API");
+        console.log(REACT_APP_API_URL);
         console.log(frontSide);
         console.log(backSide);
         const { data: response } = await instance.post("/upload-file", { front: frontSide, back: backSide }, {
