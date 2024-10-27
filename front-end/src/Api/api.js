@@ -15,9 +15,10 @@ export async function uploadFile(frontSide, backSide) {
         })
         return response
     } catch (e) {
+        const msg = e?.response?.data?.msg || "Internal server error"
         return {
             status: false,
-            msg: "Internal server error"
+            msg: msg
         }
     }
 }

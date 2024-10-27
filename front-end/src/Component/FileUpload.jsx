@@ -61,6 +61,7 @@ const AadharUploadLandingPage = ({ callback }) => {
 
         setLoading(true);
 
+        callback(null)
         uploadFile(file, file2).then((data) => {
             callback(data)
         }).catch((err) => {
