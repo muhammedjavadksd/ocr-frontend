@@ -9,7 +9,7 @@ const mongoConnection = require("./database/connection");
 const fileUpload = require("express-fileupload")
 const cors = require("cors")
 
-app.use(cors({ origin: ['http://localhost:3000'] }))
+app.use(cors({ origin: ['http://localhost:3000', 'https://workspace.veguess.shop'] }))
 
 
 app.use(fileUpload())
