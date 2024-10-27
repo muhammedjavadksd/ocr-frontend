@@ -83,19 +83,21 @@ const AadharUploadLandingPage = ({ callback }) => {
             <div className="bg-white rounded-lg shadow-xl p-8 pb-0 max-w-3xl w-full">
                 <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Aadhar Card Upload & Data Extraction</h1>
 
-                <div className=" p-8 mb-2" onDragOver={handleDragOver} onDrop={handleDrop}>
-                    <div className="grid grid-cols-2  items-center gap-3 justify-center ">
+                <div className="p-2 md:p-8 mb-2" onDragOver={handleDragOver} onDrop={handleDrop}>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-3 justify-center">
                         {!file ? (
                             <FileSelect label="file-upload" />
                         ) : (
                             <SelectedFile onRemove={() => handleRemoveFile(setFile)} file={file} />
                         )}
                         {!file2 ? (
-                            <FileSelect label={"file-upload2"} />
+                            <FileSelect label="file-upload2" />
                         ) : (
                             <SelectedFile onRemove={() => handleRemoveFile(setFile2)} file={file2} />
                         )}
                     </div>
+
                     <input id="file-upload" type="file" className="hidden" onChange={(event) => handleFileChange(event, "front")} accept="image/jpeg,image/png" aria-label="Upload Aadhar card image" />
                     <input id="file-upload2" type="file" className="hidden" onChange={(event) => handleFileChange(event, "back")} accept="image/jpeg,image/png" aria-label="Upload Aadhar card image" />
                     <button onClick={handleUpload} className="bg-blue-600 mt-5 rounded-lg p-5 w-full text-white mb-3">Submit & Extract Data</button>
