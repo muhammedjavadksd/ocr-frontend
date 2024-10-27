@@ -6,7 +6,13 @@ const dotenv = require("dotenv");
 const userRouter = require("./router/userRouter");
 const { notFound, errorHandle } = require("./middleware/utilMiddleware");
 const mongoConnection = require("./database/connection");
+const fileUpload = require("express-fileupload")
+const cors = require("cors")
 
+app.use(cors({ origin: ['http://localhost:3000'] }))
+
+
+app.use(fileUpload())
 dotenv.config({ path: "./.env" })
 mongoConnection()
 

@@ -1,6 +1,7 @@
 const tesseract = require("tesseract.js");
 
 async function getDataFromAadharCard(image) {
+
     const { data: { text } } = await tesseract.recognize(image, "eng");
     return text;
 }

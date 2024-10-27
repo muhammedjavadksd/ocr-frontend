@@ -3,6 +3,7 @@ function notFound(req, res) {
 }
 
 function errorHandle(err, req, res, next) {
+    console.log(err);
     res.status(500).json({ status: false, msg: "Internal server error" })
 }
 
