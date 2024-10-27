@@ -38,11 +38,25 @@ function getDOB(text) {
     }
     return null;
 }
-
 function getAddress(text) {
-    const addressMatch = text.match(/W\/O:.*?Kerala\s*-\s*\d{6}/s);
-    const address = addressMatch ? addressMatch[0].replace(/\s{2,}/g, ' ').trim() : "Address not found";
-    return address;
+    const addressPattern = /(?:\w\/\d:\s*|Address\s*:\s*|W\/0:\s*)(.*?)(\w{2,}\s*-\s*\d{6})/s;
+
+    const addressMatch = text.match(addressPattern);
+
+    if (addressMatch) {
+        // Clean the address part by removing unwanted characters
+        const address = addressMatch[1]
+            .replace(/[^a-zA-Z0-9\s,.'-]/g, '') // Remove unwanted characters
+            .replace(/\s+/g, ' ') // Collapse multiple spaces
+            .trim(); // Trim leading/trailing spaces
+
+        const statePostalCode = addressMatch[2].trim(); // Extract and clean state and postal code
+        return `${address}, ${statePostalCode}`; // Return formatted address
+    } else {
+        return 'Address not found'; // Handle case where no address is found
+    }
 }
+
+
 
 module.exports = { getDataFromAadharCard, getIdNumber, getName, getGender, getDOB, getAddress }
